@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ $1 == "-h" ]]; then
+  echo "ssh into vagrant and cd to the code subdirectory that I'm in on my mac"
+  exit 0
+fi
+
+code_directory=""
+if [[ $PWD =~ code ]]; then
+  code_directory=${PWD##*code/}
+fi
+
+target_directory="/vagrant/code/$code_directory"
+
+ssh_config=$(vagrant ssh-config)
+
+         port=$(echo ${ssh_config##*Port}         | awk '{print $1;}')
+     hostname=$(echo ${ssh_config##*HostName}     | awk '{print $1;}')
+identity_file=$(echo ${ssh_config##*IdentityFile} | awk '{print $1;}')
+
+command="ssh -p$port -i $identity_file -t vagrant@$hostname \"cd $target_directory; /usr/bin/env bash -l\""
+
+eval "$command"
+
+# TODO: work out why I get:
+# /home/vagrant/.bashrc: line 102: bind: warning: line editing not enabled
+# /home/vagrant/.bashrc: line 103: bind: warning: line editing not enabled
+# /home/vagrant/.bashrc: line 104: bind: warning: line editing not enabled
+#
+# when I run this

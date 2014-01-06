@@ -50,7 +50,7 @@ if [[ $(uname -m) =~ 64 ]]; then
   dockerize_bin="${dockerize_dir}/bin/dockerize"
 
   if [[ ! -e $dockerize_bin ]]; then
-    [[ -d $dockerize_dir ]] && rm -f "${dockerize_dir}"
+    [[ -d $dockerize_dir ]] && rm -rf "${dockerize_dir}"
     wget -q -O - "${dockerize_source}.tar.gz" | tar -C /usr/local/src -zxv
     mv "${dockerize_download_Location}" "${dockerize_dir}"
   fi

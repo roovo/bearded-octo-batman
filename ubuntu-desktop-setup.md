@@ -49,5 +49,7 @@ the finder sidebar.
 * about:config -> browser.newtab.url -> (set to home page url)
 
 ##My Developer tools
-* run the provisioning script (`provision_dev.sh`)
-* import dotfiles (https://github.com/roovo/dotfiles)
+* run the provisioning scripts (`sudo ./provision_dev_essentials`, `sudo ./provision_dockerize`)
+* add yourself to the docker group `sudo usermod -a -G docker <user>`
+* import dotfiles `bash <(curl -sSL https://raw.github.com/roovo/dotfiles/master/scripts/bootstrap)`
+* log out and in again to pick up the new permissions and dotfile stuff

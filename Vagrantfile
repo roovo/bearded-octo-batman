@@ -11,8 +11,20 @@ Vagrant.configure("2") do |config|
   # uncomment to skip the auto-update of guest additions
   # config.vbguest.auto_update = false
 
-  config.vm.provision :shell, :path => 'provision_dev.sh'
-  # config.vm.provision :shell, :path => 'provision_dev.sh', :args => '--skip-backport'
+  confirmation = [
+    %{if [[ ! -z $(type -p docker) ]]; then},
+      %{echo -e "\nVM ready - on first log in:"},
+      %{echo    "  * add yourself to the docker group \\`sudo usermod -a -G docker <user>\\`"},
+      %{echo    "  * set up dotfiles \\`bash <(curl -sSL https://raw.github.com/roovo/dotfiles/master/scripts/bootstrap)\\`"},
+      %{echo -e "  * and log out and in again to pick up the new permissions and dotfile stuff\n"},
+    %{fi},
+  ]
+
+  config.vm.provision :shell, :path   => 'provision_dev_essentials'
+  config.vm.provision :shell, :path   => 'provision_dockerize'
+  # config.vm.provision :shell, :path   => 'provision_dockerize', :args => '--skip-backport'
+
+  config.vm.provision :shell, :inline => confirmation.join("\n")
 end
 
 # GuestAdds Backport  Provision Time

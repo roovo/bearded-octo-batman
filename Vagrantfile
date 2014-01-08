@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
   config.vm.box     = BOX_NAME
   config.vm.box_url = BOX_URI
 
+  config.ssh.forward_agent = true
+
   # uncomment to skip the auto-update of guest additions
   # config.vbguest.auto_update = false
 

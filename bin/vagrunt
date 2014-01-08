@@ -14,13 +14,7 @@ fi
 
 target_directory="/vagrant/code/$code_directory"
 
-ssh_config=$(vagrant ssh-config)
-
-         port=$(echo ${ssh_config##*Port}         | awk '{print $1;}')
-     hostname=$(echo ${ssh_config##*HostName}     | awk '{print $1;}')
-identity_file=$(echo ${ssh_config##*IdentityFile} | awk '{print $1;}')
-
-command="ssh -p$port -i $identity_file -t vagrant@$hostname \"cd $target_directory; /usr/bin/env bash -l\""
+command="vagrant ssh -- -t \"cd $target_directory; /usr/bin/env bash -l\""
 
 eval "$command"
 

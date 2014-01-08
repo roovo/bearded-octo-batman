@@ -40,7 +40,7 @@ if (( provision_backport = 1 )); then
   fi
 fi
 
-if ! type -p docker; then
+if ! type docker >/dev/null 2>&1; then
   wget -q -O - https://get.docker.io/gpg | apt-key add -
   echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
   apt-get update -q

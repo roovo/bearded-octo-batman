@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+
+[[ ! -d ../code             ]] && mkdir ../code
+[[ ! -s ../code/Vagrantfile ]] && ln -s ../bearded-octo-batman/Vagrantfile ../code/Vagrantfile
+[[ ! -s ~/bin/vagrunt       ]] && ln -s ${PWD}/bin/vagrunt                 ~/bin/vagrunt
+
+cd ../code
+
+vagrant up --provision

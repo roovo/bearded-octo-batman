@@ -20,9 +20,9 @@ Vagrant.configure("2") do |config|
     %{fi},
   ]
 
-  config.vm.provision :shell, :path   => 'script/provision_dev_essentials'
-  config.vm.provision :shell, :path   => 'script/provision_dockerize'
-  # config.vm.provision :shell, :path   => 'script/provision_dockerize', :args => '--skip-backport'
+  config.vm.provision :shell, :path   => '../bearded-octo-batman/script/provision_dev_essentials'
+  config.vm.provision :shell, :path   => '../bearded-octo-batman/script/provision_dockerize'
+  # config.vm.provision :shell, :path   => '../bearded-octo-batman/script/provision_dockerize', :args => '--skip-backport'
 
   config.vm.provision :shell, :inline => confirmation.join("\n")
 end

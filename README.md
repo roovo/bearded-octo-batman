@@ -5,10 +5,36 @@ An experimental Vagrant setup for docker based development
 To see how using something like this for docker-based development on my mac
 works.
 
-The idea is for this to be at a top level and different docker-based projects
-can live inside the code directory.  These will then share this vagrant
-instance (so save spinning up new ones) and hence will share the same docker
-image library (so I don't have to download the base images for each project -
-they'll already be there...
+It's meant to work in the following way:
 
-Might work out or it might not.....
+```
+parent_dir -----> bearded-octo-batman
+             |
+             ---> code  -----> Vagrantfile
+                          |
+                          ---> project 1
+                          |
+                          ---> project 2
+                          ..
+```
+
+The idea is that the `code` is where the vagrant instance is 'rooted',
+such that all the projects in the code direcory can share it to use
+a common development environment with a shared docker image repository.
+
+## Setup
+
+```sh
+cd bearded-octo-batman
+./script/setup
+```
+
+This creates the code directory, creates a link to this project's Vagrantfile
+in it and provisions vagrant. It also links the `vagrunt` command into `~/bin`.
+
+The setup script will have to be run twice to complete the install.
+
+## Use
+
+run the `vagrunt` command from inside a project directory to ssh into the
+same directory inside the vagrant instance.

@@ -8,11 +8,11 @@ if [[ $1 == "-h" ]]; then
 fi
 
 code_directory=""
-if [[ $PWD =~ code ]]; then
+if [[ "$PWD" =~ code ]]; then
   code_directory=${PWD##*code/}
 fi
 
-target_directory="/vagrant/code/$code_directory"
+target_directory="/vagrant/$code_directory"
 
 command="vagrant ssh -- -t \"cd $target_directory; /usr/bin/env bash -l\""
 

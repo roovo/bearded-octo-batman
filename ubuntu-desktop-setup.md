@@ -17,6 +17,14 @@ workings.
 * add terminal
 * loose LibraOffice+, ubuntu one
 
+##Proxy stuff
+So that `sudo apt-get ...` respects proxy settings, the proxy env vars need
+to be kept when sudoing:
+
+```sh
+sudo visudo     # and paste in: Defaults env_keep = "http_proxy https_proxy ftp_proxy"
+```
+
 ##My Developer tools
 * run the provisioning scripts
 ```sh

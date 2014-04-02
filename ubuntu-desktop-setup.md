@@ -65,7 +65,10 @@ then find it in the 'file explorer', open the shared directory and press
 the finder sidebar.
 
 ##Firefox
-* Addons: VimFx
+* Enter manual proxy settings
+* Addons: VimFx, QuickProxy
+  - to use QuickProxy: ctrl-/ toggles the Add-on bar
+    or enable it by right clicking in emnpty bit of tab bar
 * set home page to: https://startpage.com
 * about:config -> browser.newtab.url -> (set to home page url)
 * add startpage as the defaulf search in Firefox
